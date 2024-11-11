@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <title>Linear Gradient</title>
+        <style>
+            *{
+                padding:0;
+                margin:0;
+                box-sizing:border-box;
+            }
+            html{
+                font-size:62.5%;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            button{
+                
+                font-size:1.2rem;
+                /* padding:0.8rem 2.5rem; */
+                letter-spacing: 0.1rem;
+                height:4.5rem;
+                width:16rem;
+                border-radius:10rem;
+                cursor:pointer;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+                rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                &:active {
+                    transform:scale(0.98);
+                    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+                }
+            }
+            .section{
+                text-align: center;
+            }
+            #btn1{
+                background-color:#051937;
+                color:#f0e7e7;
+                border:none;
+            }
+            #btn2{
+                background-color:#a8eb12;
+                color:rgb(34,34,34);
+                margin-left:2rem;
+                border:none;
+            }
+            h2{
+                margin-top:2.5rem;
+                margin-bottom:2.5rem;
+                font-size:1.5rem;
+                color:aliceblue;
+            
+            }
+            .copycode{
+                height: 7rem;
+                width:34.2rem;
+                border-left:#f0e7e7 solid 0.4rem;
+                background-color: rgba(255, 255, 255, 0.2);
+                color:#fff;
+                font-weight:700;
+                border-radius:0.5rem;
+                font-size:1.5rem;
+                padding-left:1rem;
+                padding-top:1.4rem;
+                text-align:left;
+                font-family:monospace;
+            }
+            body{
+                height:100vh;
+                background-image: linear-gradient(to right, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+                display:flex;
+                justify-content: center;
+                align-items:center;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="section">
+            <div>
+                <button id="btn1">#051937</button>
+                <button id="btn2">#A8EB12</button>
+            </div>
+            <h2> Click To Copy the Code</h2>
+            <div class="copycode">
+                background-image: linear-gradient(to right, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+            </div>
+        </section>
+        <script>
+
+            let mybtn1=document.getElementById("btn1");
+            let mybtn2=document.getElementById("btn2");
+            let cpy=document.querySelector(".copycode");
+            let rgb1="#051937";
+            let rgb2="#a8eb12";
+            let hexval= ()=>{
+                let myhexval="0123456789abcdef";
+                let colors="#";
+                for(let i=0;i<6;i++){
+                    colors=colors+ myhexval[Math.floor(Math.random()*16)];
+                }
+                return colors;
+
+            };
+
+            const handleEvent1=()=>{
+                rgb1=hexval();
+                mybtn1.innerText=rgb1.toUpperCase();
+                cpy.innerText=`background-image: linear-gradient(to right, ${rgb1}, ${rgb2});`;
+                document.body.style.backgroundImage=`linear-gradient(to right, ${rgb1}, ${rgb2})`;
+
+            }
+            const handleEvent2 = () =>{
+                rgb2=hexval();
+                mybtn2.innerText=rgb2.toUpperCase();
+                cpy.innerText=`background-image: linear-gradient(to right, ${rgb1}, ${rgb2});`;
+                document.body.style.backgroundImage=`linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            }
+            cpy.addEventListener("click",()=>{
+                navigator.clipboard.writeText(cpy.innerText);
+                alert("You have copied the code.");
+            })
+            mybtn1.addEventListener("click",handleEvent1);
+            mybtn2.addEventListener("click",handleEvent2);
+        </script>
+    </body>
+</html>
